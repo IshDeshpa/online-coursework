@@ -17,12 +17,12 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
-h = sigmoid(X*theta); % returns column vector of hypothesis y values for each row in X
-tr = theta(2:end);  % theta reduced
-J = (y'*log(h)+(1-y)'*log(1-h))/(-m); % cost without regularization
-J = J + lambda/(2*m)*ones(size(tr))'*(tr.^2); % add regularization
-grad = (X'*(h-y))/m; % grad without regularization
-grad = grad + [0; lambda/m*tr]; % with regularization
+h = sigmoid(X, theta); % returns column vector of hypothesis y values for each row in X
+J = (y'(2*log(h)+(1-y)'*log(1-h))/(-m); % cost without regularization
+J = J + lambda/(2*m)*ones(size(theta(2:end)))'*(theta(2:end).^2); % add regularization
+grad = (X'*(h-y))/m;
+grad = grad + [0; lambda/m*theta(2:end)];
+%FIX THIS: grad =  + lambda/m*ones(size(theta(2:end)))'*theta(2:end);
 
 
 
