@@ -36,9 +36,12 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
-
-
-
+h = sigmoid(X*theta); % returns column vector of hypothesis y values for each row in X
+tr = theta(2:end);  % theta reduced
+J = (y'*log(h)+(1-y)'*log(1-h))/(-m); % cost without regularization
+J = J + lambda/(2*m)*ones(size(tr))'*(tr.^2); % add regularization
+grad = (X'*(h-y))/m; % grad without regularization
+grad = grad + [0; lambda/m*tr]; % with regularization
 
 
 
