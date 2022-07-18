@@ -62,19 +62,33 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+%Xbias = [ones(size(X, 1),1) X];
+%a2 = sigmoid(Xbias*Theta1');
+%a2bias = [ones(size(a2, 1),1) a2];
+%h = sigmoid(a2bias*Theta2');
 
+eye_mat = eye(num_labels);
+yRecode = eye_mat(y,:);
 
+%J = (-1/m)*sum((yRecode.*log(h)+(1-yRecode).*log(1-h)),'all') + lambda/(2*m)*(sum(Theta1(:,2:end).^2, 'all') + sum(Theta2(:,2:end).^2, 'all'));
 
-
-
-
-
-
-
-
-
-
-
+deltaacc1 = zeros(size(Theta1));
+deltaacc2 = zeros(size(Theta2));
+for t=1:m
+    a1 = [1; X(t, :)'];
+    z2 = Theta1*a1;
+    a2 = [1; sigmoid(z2)];
+    z3 = Theta2*a2;
+    a3 = sigmoid(z3);
+    delta3 = a3-yRecode(t, :)';
+    delta2 = (Theta2'*delta3).*[1; sigmoidGradient(z2)];
+    deltaacc2 = deltaacc2 + delta3*a2';
+    deltaacc1 = deltaacc1 + delta2(2:end)*a1';
+    J = J + yRecode(t, :)*log(a3) + (ones(1, num_labels)-yRecode(t, :))*log(ones(num_labels, 1)-a3);
+end
+J = J/(-m) + (lambda/(2*m))*(sum(Theta1(:, 2:end).^2, 'all') + sum(Theta2(:, 2:end).^2, 'all'));
+Theta1_grad = 1/m*deltaacc1+lambda/m*[zeros(hidden_layer_size,1) Theta1(:, 2:end)];
+Theta2_grad = 1/m*deltaacc2+lambda/m*[zeros(num_labels,1) Theta2(:, 2:end)];
 
 
 
