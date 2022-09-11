@@ -21,11 +21,17 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+% loop through examples
+    % loop through each centroid
+        % if current distance < min distance
+            % min distance = current distance
+    % idx = number of the centroid
 
-
-
-
-
+for i = 1:size(X)
+    dists = ((repmat(X(i,:), K, 1) - centroids).^2)*ones(size(X,2),1);
+    [M, I] = min(dists);
+    idx(i) = I;
+end
 
 % =============================================================
 

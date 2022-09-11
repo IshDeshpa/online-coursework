@@ -26,11 +26,11 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
-
-
-
+for i=1:K
+    grab = idx==i;
+    Ck = sum(grab == 1);
+    centroids(i,:) = 1/Ck*sum(X.*repmat(grab, 1, n),1);
+end
 
 
 % =============================================================
