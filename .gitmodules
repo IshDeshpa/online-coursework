@@ -1,0 +1,3 @@
+[submodule "ModernRobotics"]
+	path = Modern-Robotics-Course/ModernRobotics
+	url = https://github.com/NxRLab/ModernRobotics.git

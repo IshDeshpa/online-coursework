@@ -1,0 +1,16 @@
+links = rigid bodies
+connected together by joints
+actuation causes joints to move
+
+open-chain connections = all joints actuated
+closed-chain loops = subset of joints may be actuated
+
+actuators = DC/AC motors, stepper motors, shape memory alloys, pneumatics/hydraulics
+
+most motors are fast w/ low torque -> leads to necessity for speed->torque conversion w/ gears, cable drives, belts, pulleys, chains, sprockets
+
+sensors -> encoders/potentiometers/resolvers measure displacement
+tachometers measure velocity
+vision-only cameras
+RGB-D cameras (depth)
+laser range finders
